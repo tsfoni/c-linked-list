@@ -1,0 +1,1 @@
+1. If head is NULL, it will create new list.
