@@ -14,12 +14,6 @@ Node *new_node(Data *data)
     return ptr;
 }
 
-/*
-Post insert will add new node where is free with data.
-Return address of the new node, otherwise NULL.
-
-NOTES: 1.
-*/
 Node *post_insert(Node *head, Data *data) {
     if (head == NULL) 
         return new_node(data);
@@ -33,7 +27,6 @@ Node *post_insert(Node *head, Data *data) {
     return head->next;
 }
 
-// Return the address of a node at index, otherwise NULL.
 Node *at(Node *head, unsigned int index)
 {
     for (unsigned int i = 0; i < index; i++)
@@ -47,8 +40,7 @@ Node *at(Node *head, unsigned int index)
     return head;
 }
 
-// Create and change the head of the list with data.
-Node *beginning_insert(Node *head, Data *data)
+Node *pre_insert(Node *head, Data *data)
 {
     Node *n = new_node(data);
     if(n != NULL)
@@ -57,16 +49,11 @@ Node *beginning_insert(Node *head, Data *data)
     return n;
 }
 
-/* 
-Create new node at index with data and change the previous and next if needed.
-Return address of the new node, otherwise NULL.
 
-NOTES: 1.
-*/ 
 Node *insert_at(Node *head, Data *data, unsigned int index)      
 {
     if (index == 0)
-        return beginning_insert(head, data);
+        return pre_insert(head, data);
 
     Node *tmp = at(head, index - 1);
     if (tmp == NULL)
@@ -82,8 +69,7 @@ Node *insert_at(Node *head, Data *data, unsigned int index)
     return new_n;
 }
 
-// Iterate for each item in the list and free from memory.
-void free_list(Node *head)
+void destroy_list(Node *head)
 {
     Node *tmp = head;
     while (head != NULL)
